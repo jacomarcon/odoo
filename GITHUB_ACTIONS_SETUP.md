@@ -122,10 +122,22 @@ docker-compose -f docker-compose.prod.yml up -d
   - Missing files in build context
   - Permission issues
 
+#### Attestation Errors
+If you see "Failed to get ID token" errors:
+1. The workflow includes `continue-on-error: true` for attestations
+2. Alternatively, use `docker-build-simple.yml` which doesn't include attestations
+3. This is a newer GitHub feature that may not be available in all environments
+
 #### Push Failures
 - Verify repository permissions
 - Check if package visibility allows pushes
 - Ensure GITHUB_TOKEN has proper permissions
+
+#### Permission Issues
+If you get permission errors:
+1. Go to Settings → Actions → General
+2. Set "Workflow permissions" to "Read and write permissions"
+3. Enable "Allow GitHub Actions to create and approve pull requests"
 
 #### Image Pull Issues
 ```bash
