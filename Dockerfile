@@ -11,13 +11,13 @@ COPY addons/account /opt/odoo/addons/account
 # COPY addons/your_custom_addon /opt/odoo/addons/your_custom_addon
 
 # Ensure proper permissions for Odoo directories
-RUN mkdir -p /var/lib/odoo/sessions /var/lib/odoo/filestore \
-    && chown -R odoo:odoo /opt/odoo/addons/account \
-    && chown -R odoo:odoo /var/lib/odoo \
-    && chmod -R 755 /var/lib/odoo
+# RUN mkdir -p /var/lib/odoo/sessions /var/lib/odoo/filestore \
+#     && chown -R odoo:odoo /opt/odoo/addons/account \
+#     && chown -R odoo:odoo /var/lib/odoo \
+#     && chmod -R 755 /var/lib/odoo
 
 # Switch back to odoo user for security
-USER odoo
+# USER odoo
 
 # Expose the default Odoo port
 EXPOSE 8069
