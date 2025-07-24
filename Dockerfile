@@ -10,8 +10,11 @@ COPY addons/account /opt/odoo/addons/account
 # Copy any other custom addons if needed
 # COPY addons/your_custom_addon /opt/odoo/addons/your_custom_addon
 
-# Set proper ownership for the odoo user
-RUN chown -R odoo:odoo /opt/odoo/addons/account
+# Ensure proper permissions for Odoo directories
+RUN mkdir -p /var/lib/odoo/sessions /var/lib/odoo/filestore \
+    && chown -R odoo:odoo /opt/odoo/addons/account \
+    && chown -R odoo:odoo /var/lib/odoo \
+    && chmod -R 755 /var/lib/odoo
 
 # Switch back to odoo user for security
 USER odoo

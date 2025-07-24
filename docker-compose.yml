@@ -35,6 +35,7 @@ services:
     restart: unless-stopped
     networks:
       - odoo-network
+    user: "odoo:odoo"
 
 volumes:
   odoo-web-data:
