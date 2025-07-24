@@ -1,0 +1,44 @@
+version: '3.8'
+
+# Production docker-compose using GitHub Container Registry image
+# Use this when you want to run the pre-built image from GitHub
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: odoo
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+    restart: unless-stopped
+    networks:
+      - odoo-network
+
+  odoo:
+    image: ghcr.io/jacomarcon/odoo/odoo-custom:latest
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      # Mount additional configuration if needed
+      # - ./config/odoo.conf:/etc/odoo/odoo.conf
+    restart: unless-stopped
+    networks:
+      - odoo-network
+
+volumes:
+  odoo-web-data:
+  odoo-db-data:
+
+networks:
+  odoo-network:
+    driver: bridge
