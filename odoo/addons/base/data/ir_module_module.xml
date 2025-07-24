@@ -39,7 +39,7 @@
             <field name="summary">Accounting, Taxes, Budgets, Assets...</field>
             <field name="license">OEEL-1</field>
             <field name="author">Odoo S.A.</field>
-            <field name="to_buy" eval="True"/>
+            <field name="to_buy" eval="False"/>
             <field name="icon">/base/static/img/icons/account_accountant.png</field>
             <field name="website">https://www.odoo.com/app/accounting?utm_source=db&amp;utm_medium=module</field>
         </record>
